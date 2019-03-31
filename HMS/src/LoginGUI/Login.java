@@ -165,9 +165,12 @@ public class Login extends javax.swing.JFrame {
 
     private void logBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logBtnActionPerformed
         try{
+            if(type=="n"){
+                JOptionPane.showMessageDialog(null, "Select Employee Type!");
+            }
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
-            String sql = "select * from login where username=? and password=? and type=?";
+            String sql = "select * from users where username=? and password=? and type=?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, unameTB.getText());
             pst.setString(2, passTB.getText());
@@ -195,8 +198,9 @@ public class Login extends javax.swing.JFrame {
                     p.show();
                     this.dispose();
                 }
-                else
-                   JOptionPane.showMessageDialog(null, "Select Employee Type!"); 
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect Login Details!");
             }
         }
         catch(Exception ex){
