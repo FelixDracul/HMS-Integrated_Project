@@ -4,18 +4,55 @@
  * and open the template in the editor.
  */
 package PharmacistGUI;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Maleesha Nanayakkara
  */
 public class AddMedicine extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Addmedicine
-     */
+     
+    PharmacistMain P1 = new PharmacistMain();
+    AddMedicine P2 = new AddMedicine();
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
+    Statement pst;
+   
     public AddMedicine() {
-        initComponents();
+           initComponents();
+           Updatemedi.setEnabled(false);
+    }
+    public void UpdateAppTable(){
+    
+     DBMconnection ob1 = new DBMconnection();
+     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+      model.setRowCount(0);
+       try{
+            Class.forName(ob1.getDriver());
+            Connection con= DriverManager.getConnection(ob1.url,"root","");
+            Statement st = con.createStatement();
+          
+            String query = "SELECT * FROM medicine_in";
+            
+            ResultSet rs = st.executeQuery(query);
+     while(rs.next()){
+                  model.addRow(new Object[]{rs.getInt("Code"),rs.getString("Name"),rs.getString("Dosage"),rs.getInt("Quantity"),rs.getDouble("Unit_price"),rs.getString("Brand")});
+                  
+            }}
+        catch(Exception ee){
+            
+        }
+        
+    
     }
 
     /**
@@ -29,6 +66,7 @@ public class AddMedicine extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,10 +75,10 @@ public class AddMedicine extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Addmedi = new javax.swing.JButton();
+        Updatemedi = new javax.swing.JButton();
+        Deletemedi = new javax.swing.JButton();
+        Resetfields = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -57,6 +95,13 @@ public class AddMedicine extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("ADD MEDICINE");
 
+        jButton5.setText("Close");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -64,13 +109,17 @@ public class AddMedicine extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(358, 358, 358))
+                .addGap(201, 201, 201)
+                .addComponent(jButton5)
+                .addGap(78, 78, 78))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -91,13 +140,33 @@ public class AddMedicine extends javax.swing.JPanel {
 
         jLabel8.setText("Brand");
 
-        jButton1.setText("Add");
+        Addmedi.setText("Add");
+        Addmedi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddmediActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Update");
+        Updatemedi.setText("Update");
+        Updatemedi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdatemediActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete");
+        Deletemedi.setText("Delete");
+        Deletemedi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletemediActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Reset");
+        Resetfields.setText("Reset");
+        Resetfields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetfieldsActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("jTextField1");
 
@@ -122,11 +191,11 @@ public class AddMedicine extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Addmedi, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
-                        .addComponent(jButton2)
+                        .addComponent(Updatemedi)
                         .addGap(29, 29, 29)
-                        .addComponent(jButton3))
+                        .addComponent(Deletemedi))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -147,7 +216,7 @@ public class AddMedicine extends javax.swing.JPanel {
                 .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(Resetfields)
                 .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
@@ -181,11 +250,11 @@ public class AddMedicine extends javax.swing.JPanel {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Addmedi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Updatemedi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Deletemedi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(Resetfields)
                 .addContainerGap())
         );
 
@@ -193,15 +262,23 @@ public class AddMedicine extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Code", "Name", "Dosage", "Quantity", "Unit Price", "Brand"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -239,12 +316,115 @@ public class AddMedicine extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       P2.setVisible(false);
+       P1.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void AddmediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddmediActionPerformed
+        
+              
+        int mcode = Integer.parseInt( jTextField1.getText());
+        String mname =jTextField2 .getText();
+        String mg = jTextField3.getText();
+        int qty   =Integer.parseInt( jTextField4.getText());
+        double Uprice =Double.parseDouble(jTextField5.getText());
+        String Brand = jTextField6.getText();
+        
+        Datainsertmedi Sobj = new Datainsertmedi();
+        JOptionPane.showMessageDialog(null, Sobj.mediinsert(mcode,mname,mg,qty,Uprice,Brand));
+        {
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+        }   
+        
+    }//GEN-LAST:event_AddmediActionPerformed
+
+    private void ResetfieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetfieldsActionPerformed
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+    }//GEN-LAST:event_ResetfieldsActionPerformed
+
+    private void UpdatemediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatemediActionPerformed
+       
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con1;
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            String query = "update medicine_in set Code = ?, Name = ?, Dosage = ?, Quantity = ?, Brand = ? where Code = ?";
+            PreparedStatement pst1 = con1.prepareStatement(query);
+            pst1.setString(1, jTextField1.getText());
+            pst1.setString(2, jTextField2.getText());
+            pst1.setString(3, jTextField3.getText());
+            pst1.setString(4, jTextField4.getText());
+            pst1.setString(5, jTextField5.getText());
+            pst1.setString(5, jTextField6.getText());
+        if(pst1.executeUpdate()==1){
+                JOptionPane.showMessageDialog(null, "Record successfully edited!");
+            }
+        else{
+                JOptionPane.showMessageDialog(null, "Incorrect record!");
+            }
+        }
+        catch(HeadlessException | ClassNotFoundException | SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error " + ex);
+        }
+        finally{
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+        }
+        
+        
+    }//GEN-LAST:event_UpdatemediActionPerformed
+
+    private void DeletemediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletemediActionPerformed
+         try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            String query = "Delete from medicine_in where Code = ?";
+            PreparedStatement dst = con.prepareStatement(query);
+            dst.setString(1, jTextField1.getText());
+          
+        if(dst.executeUpdate()==1){
+                JOptionPane.showMessageDialog(null, "Record successfully Deleted!");
+            }
+        else{
+                JOptionPane.showMessageDialog(null, "Incorrect record!");
+            }
+        }
+        catch(HeadlessException | ClassNotFoundException | SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error " + ex);
+        }
+        finally{
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+        }
+        
+    }//GEN-LAST:event_DeletemediActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton Addmedi;
+    private javax.swing.JButton Deletemedi;
+    private javax.swing.JButton Resetfields;
+    private javax.swing.JButton Updatemedi;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

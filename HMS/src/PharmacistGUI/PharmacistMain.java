@@ -11,9 +11,8 @@ package PharmacistGUI;
  */
 public class PharmacistMain extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Pharmacist_main
-     */
+    AddMedicine P2 = new AddMedicine();
+            
     public PharmacistMain() {
         initComponents();
     }
@@ -45,6 +44,11 @@ public class PharmacistMain extends javax.swing.JFrame {
         jButton1.setText("Search");
 
         jButton2.setText("Add Medicine");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -136,6 +140,10 @@ public class PharmacistMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        P2.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -166,6 +174,7 @@ public class PharmacistMain extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new PharmacistMain().setVisible(true);
             }
@@ -182,4 +191,11 @@ public class PharmacistMain extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private static class Addmedicine {
+
+        public Addmedicine() {
+            AddMedicine P2 = new AddMedicine();
+        }
+    }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2019 at 09:14 PM
+-- Generation Time: Mar 31, 2019 at 11:40 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -64,6 +64,21 @@ CREATE TABLE `doctors` (
 INSERT INTO `doctors` (`DocID`, `FName`, `LName`, `Specialization`, `DocFee`, `Gender`, `DoB`, `ContactNum`, `StartDate`) VALUES
 ('d0001', 'Gihan', 'Weerabandu', 'General Physician', 500, 'm', '1986-06-02', 713456379, '2013-04-23'),
 ('d0002', 'Ruwanthi', 'Ranaweera', 'Gynocologist', 600, 'f', '1986-04-07', 774568267, '2015-08-01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medicine_in`
+--
+
+CREATE TABLE `medicine_in` (
+  `Code` int(11) NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Dosage` varchar(15) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Unit_price` double NOT NULL,
+  `Brand` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,6 +157,12 @@ INSERT INTO `users` (`username`, `password`, `type`) VALUES
 --
 ALTER TABLE `doctors`
   ADD PRIMARY KEY (`DocID`);
+
+--
+-- Indexes for table `medicine_in`
+--
+ALTER TABLE `medicine_in`
+  ADD PRIMARY KEY (`Code`);
 
 --
 -- Indexes for table `patients`
