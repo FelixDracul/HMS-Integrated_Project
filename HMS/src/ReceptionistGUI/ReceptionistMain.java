@@ -169,6 +169,11 @@ public class ReceptionistMain extends javax.swing.JFrame {
         });
 
         aAddB.setText("Add");
+        aAddB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aAddBActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Date:");
@@ -804,6 +809,17 @@ public class ReceptionistMain extends javax.swing.JFrame {
     private void aTTB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aTTB1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_aTTB1ActionPerformed
+
+    private void aAddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAddBActionPerformed
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            String str = "insert into appointments appID, patientID, DocID, billID, symptoms, date, time, queueNum values ";
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error:" +ex);
+        }
+    }//GEN-LAST:event_aAddBActionPerformed
 
     /**
      * @param args the command line arguments
