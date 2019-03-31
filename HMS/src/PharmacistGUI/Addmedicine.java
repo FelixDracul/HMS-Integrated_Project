@@ -9,12 +9,12 @@ package PharmacistGUI;
  *
  * @author Maleesha Nanayakkara
  */
-public class Addmedicine extends javax.swing.JPanel {
+public class AddMedicine extends javax.swing.JPanel {
 
     /**
      * Creates new form Addmedicine
      */
-    public Addmedicine() {
+    public AddMedicine() {
         initComponents();
     }
 
