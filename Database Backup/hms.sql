@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2019 at 05:09 PM
+-- Generation Time: Mar 31, 2019 at 09:14 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointments` (
-  `appID` char(5) NOT NULL,
-  `patientID` char(5) NOT NULL,
-  `DocID` char(5) NOT NULL,
-  `billID` char(7) NOT NULL,
+  `appID` varchar(5) NOT NULL,
+  `patientID` varchar(5) NOT NULL,
+  `DocID` varchar(5) NOT NULL,
+  `billID` varchar(7) NOT NULL,
   `symptoms` varchar(60) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
+  `date` varchar(10) NOT NULL,
+  `time` varchar(5) NOT NULL,
   `queueNum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -46,15 +46,15 @@ CREATE TABLE `appointments` (
 --
 
 CREATE TABLE `doctors` (
-  `DocID` char(5) NOT NULL,
+  `DocID` varchar(5) NOT NULL,
   `FName` varchar(30) NOT NULL,
   `LName` varchar(40) NOT NULL,
   `Specialization` varchar(40) NOT NULL,
   `DocFee` double NOT NULL,
   `Gender` char(1) NOT NULL,
-  `DoB` date NOT NULL,
+  `DoB` varchar(10) NOT NULL,
   `ContactNum` int(11) NOT NULL,
-  `StartDate` date NOT NULL
+  `StartDate` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -72,10 +72,10 @@ INSERT INTO `doctors` (`DocID`, `FName`, `LName`, `Specialization`, `DocFee`, `G
 --
 
 CREATE TABLE `patients` (
-  `patID` char(7) NOT NULL,
+  `patID` varchar(7) NOT NULL,
   `pFName` varchar(50) NOT NULL,
   `pLName` varchar(60) NOT NULL,
-  `pDoB` date NOT NULL,
+  `pDoB` varchar(10) NOT NULL,
   `pContactNum` int(11) NOT NULL,
   `pAddress` varchar(100) NOT NULL,
   `pGender` char(1) NOT NULL
@@ -88,13 +88,13 @@ CREATE TABLE `patients` (
 --
 
 CREATE TABLE `pharmacists` (
-  `PharmID` char(5) NOT NULL,
+  `PharmID` varchar(5) NOT NULL,
   `FName` varchar(30) NOT NULL,
   `LName` varchar(40) NOT NULL,
   `Gender` char(1) NOT NULL,
-  `DoB` date NOT NULL,
+  `DoB` varchar(10) NOT NULL,
   `ContactNum` int(11) NOT NULL,
-  `StartDate` date NOT NULL
+  `StartDate` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -104,13 +104,13 @@ CREATE TABLE `pharmacists` (
 --
 
 CREATE TABLE `receptionists` (
-  `RecId` char(5) NOT NULL,
+  `RecId` varchar(5) NOT NULL,
   `FName` varchar(30) NOT NULL,
   `LName` varchar(40) NOT NULL,
   `Gender` char(1) NOT NULL,
-  `DoB` date NOT NULL,
+  `DoB` varchar(10) NOT NULL,
   `ContactNum` int(11) NOT NULL,
-  `StartDate` date NOT NULL
+  `StartDate` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
