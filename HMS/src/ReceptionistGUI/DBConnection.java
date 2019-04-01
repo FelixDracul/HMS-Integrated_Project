@@ -6,7 +6,7 @@
 package ReceptionistGUI;
 /**
  *
- * @author Extream programmer
+ * @author Kulitha Abeywardena
  */
 public class DBConnection {
     protected String driver = "com.mysql.jdbc.Driver";

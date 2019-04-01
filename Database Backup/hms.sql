@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2019 at 11:40 PM
+-- Generation Time: Apr 01, 2019 at 04:13 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -33,11 +33,17 @@ CREATE TABLE `appointments` (
   `patientID` varchar(5) NOT NULL,
   `DocID` varchar(5) NOT NULL,
   `billID` varchar(7) NOT NULL,
-  `symptoms` varchar(60) NOT NULL,
   `date` varchar(10) NOT NULL,
   `time` varchar(5) NOT NULL,
   `queueNum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`appID`, `patientID`, `DocID`, `billID`, `date`, `time`, `queueNum`) VALUES
+('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0);
 
 -- --------------------------------------------------------
 
@@ -51,7 +57,7 @@ CREATE TABLE `doctors` (
   `LName` varchar(40) NOT NULL,
   `Specialization` varchar(40) NOT NULL,
   `DocFee` double NOT NULL,
-  `Gender` char(1) NOT NULL,
+  `Gender` varchar(1) NOT NULL,
   `DoB` varchar(10) NOT NULL,
   `ContactNum` int(11) NOT NULL,
   `StartDate` varchar(10) NOT NULL
@@ -93,7 +99,7 @@ CREATE TABLE `patients` (
   `pDoB` varchar(10) NOT NULL,
   `pContactNum` int(11) NOT NULL,
   `pAddress` varchar(100) NOT NULL,
-  `pGender` char(1) NOT NULL
+  `pGender` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,7 +112,7 @@ CREATE TABLE `pharmacists` (
   `PharmID` varchar(5) NOT NULL,
   `FName` varchar(30) NOT NULL,
   `LName` varchar(40) NOT NULL,
-  `Gender` char(1) NOT NULL,
+  `Gender` varchar(1) NOT NULL,
   `DoB` varchar(10) NOT NULL,
   `ContactNum` int(11) NOT NULL,
   `StartDate` varchar(10) NOT NULL
@@ -122,7 +128,7 @@ CREATE TABLE `receptionists` (
   `RecId` varchar(5) NOT NULL,
   `FName` varchar(30) NOT NULL,
   `LName` varchar(40) NOT NULL,
-  `Gender` char(1) NOT NULL,
+  `Gender` varchar(1) NOT NULL,
   `DoB` varchar(10) NOT NULL,
   `ContactNum` int(11) NOT NULL,
   `StartDate` varchar(10) NOT NULL
@@ -151,6 +157,12 @@ INSERT INTO `users` (`username`, `password`, `type`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`appID`);
 
 --
 -- Indexes for table `doctors`

@@ -8,7 +8,7 @@ package ReceptionistGUI;
 import java.sql.*;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Kulitha Abeywardena
@@ -17,10 +17,12 @@ public class ReceptionistMain extends javax.swing.JFrame {
     /**
      * Creates new form ReceptionistMain
      */
+    private String gdr = "n";
     public ReceptionistMain() {
         initComponents();
         fillCombo();
-        //DBConnection obj = new DBConnection();
+        refreshDDT();
+        refreshADT();
     }
     
     private void fillCombo(){
@@ -36,7 +38,7 @@ public class ReceptionistMain extends javax.swing.JFrame {
                 String dFName = rs.getString("FName");
                 String dLName = rs.getString("LName");
                 //String appDocID = rs.getString("DocID");
-                docCB.addItem("(" + dID + ")" + " " + dFName + " " + dLName);
+                docCB.addItem(dID + "-" + " " + dFName + " " + dLName);
             }
         }
         catch(Exception ex){
@@ -610,15 +612,35 @@ public class ReceptionistMain extends javax.swing.JFrame {
         jLabel30.setText("Gender:");
 
         jRadioButton3.setText("Male");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         jRadioButton4.setText("Female");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("Update");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Clear Fields");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -810,17 +832,146 @@ public class ReceptionistMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_aTTB1ActionPerformed
 
+    public static String removeTillWord(String input, String word) {
+        return input.substring(input.indexOf(word));
+    }
+    
     private void aAddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAddBActionPerformed
+        String dc = docCB.getSelectedItem().toString();
+        dc = docCB.getSelectedItem().toString().split("-")[0];
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            /*Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
-            String str = "insert into appointments appID, patientID, DocID, billID, symptoms, date, time, queueNum values ";
+            String str = "insert into appointments appID, patientID, DocID, billID, symptoms, date, time, queueNum values ";*/
+            String app = aAppTB.toString();
+            String apat = aPatTB.toString();
+            String abill = aBillTB.toString();
+            String adid = dc;
+            String dt = aTTB.toString();
+            String tm = aTTB1.toString();
+            int qu = Integer.parseInt(aQTB.getText());
+            
+            InsertData aObj = new InsertData();
+            JOptionPane.showMessageDialog(null, aObj.insertApp(app, apat, adid, abill, dt, tm, qu));
         }
         catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error:" +ex);
+            JOptionPane.showMessageDialog(null, "Error: " +ex);
+        }
+        finally{
+            refreshADT();
         }
     }//GEN-LAST:event_aAddBActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+            if(gdr=="n"){
+                JOptionPane.showMessageDialog(null, "Select a gender!");
+            }
+            else{
+                String pID = rPatIDTB.getText();
+                String pFN = rFNameTB.getText();
+                String pLN = rLNameTB.getText();
+                String pdob = jTextField11.getText();
+                String pAdd = rAddTB.getText();
+                int pMob = Integer.parseInt(rMobTB.getText());
+                String pGen = gdr;
+                InsertData rObj = new InsertData();
+                JOptionPane.showMessageDialog(null, rObj.insertPat(pID, pFN, pLN, pdob, pMob, pAdd, pGen));
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " +ex);
+        }
+        finally{
+            rClean();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        gdr = "m";
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        gdr = "f";
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            String query = "update patients set pFName = ?, pLName = ?, pDoB = ?, pContactNum = ?, pAddress = ?, pGender = ? where patID = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, rFNameTB.getText());
+            pst.setString(2, rLNameTB.getText());
+            pst.setString(3, jTextField11.getText());
+            pst.setInt(4, Integer.parseInt(rMobTB.getText()));
+            pst.setString(5, rAddTB.getText());
+            pst.setString(6, String.valueOf(gdr));
+            if(pst.executeUpdate()==1){
+                JOptionPane.showMessageDialog(null, "Record successfully edited!");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect record!");
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+        finally{
+            rClean();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void refreshADT(){
+        DBConnection adView = new DBConnection();
+        DefaultTableModel adModel = (DefaultTableModel) aPatT.getModel();
+        adModel.setRowCount(0);
+        try{
+            Class.forName(adView.getDriver());
+            Connection acon = DriverManager.getConnection(adView.url, "root", "");
+            Statement ast = acon.createStatement();
+            String aQuery = "SELECT appID,patientID,DocID,billID,date,time,queueNum FROM appointments";
+            ResultSet aprs = ast.executeQuery(aQuery);
+           
+            while(aprs.next()){
+                  adModel.addRow(new Object[]{aprs.getString("appID"),aprs.getString("patientID"),aprs.getString("DocID"),aprs.getString("billID"),aprs.getString("date"),aprs.getString("time"),aprs.getInt("queueNum")});
+            }     
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+    }
+    
+    public void refreshDDT(){
+        DBConnection dView = new DBConnection();
+        DefaultTableModel dModel = (DefaultTableModel) dDocT.getModel();
+        dModel.setRowCount(0);
+        try{
+            Class.forName(dView.getDriver());
+            Connection dcon= DriverManager.getConnection(dView.url, "root", "");
+            Statement dst = dcon.createStatement();
+            String dQuery = "SELECT docID, FName, LName, Specialization, DocFee, Gender, ContactNum FROM doctors";
+            ResultSet dprs = dst.executeQuery(dQuery);
+           
+            while(dprs.next()){
+                  dModel.addRow(new Object[]{dprs.getString("docID"),dprs.getString("FName"),dprs.getString("LName"),dprs.getString("Specialization"),dprs.getDouble("DocFee"),dprs.getInt("ContactNum")});
+            }     
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+    }
+    
+    private void rClean(){
+            rPatIDTB.setText("");
+            rFNameTB.setText("");
+            rLNameTB.setText("");
+            jTextField11.setText("");
+            rAddTB.setText("");
+            rMobTB.setText("");
+            gdr = "n";
+    }
+    
     /**
      * @param args the command line arguments
      */
