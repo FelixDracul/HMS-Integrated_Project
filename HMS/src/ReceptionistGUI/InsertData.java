@@ -48,4 +48,20 @@ public class InsertData extends DBConnection{
         }
         return message;
     }
+    
+    String insertBill(String pid, String pfn, String pln, String pdob, int pcnum, String paddr, String gen){
+        String query = "INSERT INTO patients (patID,pFName,pLName,pDoB,pContactNum,pAddress,pGender) VALUES ('"+pid+"', '"+pfn+"', '"+pln+"', '"+pdob+"', "+pcnum+", '"+paddr+"', '"+gen+"')";
+        String message="";
+        try{
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(url, userName, Password);
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            message = "Patient has been successfully registered!";
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+        return message;
+    }
 }
