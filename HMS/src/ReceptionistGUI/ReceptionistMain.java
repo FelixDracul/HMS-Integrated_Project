@@ -17,8 +17,8 @@ public class ReceptionistMain extends javax.swing.JFrame {
     /**
      * Creates new form ReceptionistMain
      */
-    public String pfnm, plnm;
     private String gdr = "n";
+    public String pid, did;
     public ReceptionistMain() {
         initComponents();
         fillCombo();
@@ -802,16 +802,69 @@ public class ReceptionistMain extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
-            FindData fdObj = new FindData();
-            fdObj.findApp(pPatIDTB.toString());
-            name1.setText(pfnm);
-            name2.setText(plnm);
+            findPID();
+            findPDeet();
         }
         catch(Exception ex){
             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    void findPID(){
+        try{
+            String a = pPatIDTB.getText();
+            DBConnection db = new DBConnection();
+            Class.forName(db.getDriver());
+            Connection con = DriverManager.getConnection(db.url, "root", "");
+            Statement st = con.createStatement();
+            String query = "SELECT * FROM appointments WHERE appID = '"+a+"' ";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()){
+                pid = rs.getString("patientID");
+                did = rs.getString("DocID");
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+    }
+    
+    void findPDeet(){
+        try{
+            DBConnection db = new DBConnection();
+            Class.forName(db.getDriver());
+            Connection con = DriverManager.getConnection(db.url, "root", "");
+            Statement st = con.createStatement();
+            String query = "SELECT pFName, pLName FROM patients WHERE patID = '"+pid+"' ";
+            ResultSet rs2 = st.executeQuery(query);
+            while (rs2.next()){
+                name1.setText(rs2.getString("pFName"));
+                name2.setText(rs2.getString("pLName"));
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+    }
+    
+    void findDDeet(){
+        try{
+            DBConnection db = new DBConnection();
+            Class.forName(db.getDriver());
+            Connection con = DriverManager.getConnection(db.url, "root", "");
+            String query = "SELECT * FROM doctors WHERE DocID = '"+did+"' ";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, did);
+            ResultSet rs2 = pst.executeQuery(query);
+            while (rs2.next()){
+                docPrice.setText(rs2.getString("DocFee"));
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: deet " + ex);
+        }
+    }
+    
     private void docPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_docPriceKeyReleased
 
     }//GEN-LAST:event_docPriceKeyReleased
@@ -924,10 +977,10 @@ public class ReceptionistMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void Box2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box2ActionPerformed
-        String bdc = docCB.getSelectedItem().toString();
+        /*String bdc = docCB.getSelectedItem().toString();
         bdc = docCB.getSelectedItem().toString().split("-")[0];
         FindData fdObj = new FindData();
-        docPrice.setText(fdObj.df);
+        docPrice.setText(fdObj.df);*/
     }//GEN-LAST:event_Box2ActionPerformed
 
     private void docCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docCBActionPerformed

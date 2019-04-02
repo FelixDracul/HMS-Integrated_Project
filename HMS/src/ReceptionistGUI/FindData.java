@@ -5,9 +5,6 @@
  */
 package ReceptionistGUI;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -17,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class FindData extends DBConnection{
     
-    protected String pid, pfn, pln, did, df;
+    /*protected String pid, pfn, pln, did, df;
             
     void findApp(String aid){
         try{
@@ -33,7 +30,7 @@ public class FindData extends DBConnection{
                 pid = rs1.getString("patientID");
                 did = rs1.getString("DocID");
             }
-            /*tring query2 = "SELECT pFName, pLName FROM patients WHERE patID = '"+pid+"'";
+            tring query2 = "SELECT pFName, pLName FROM patients WHERE patID = '"+pid+"'";
             ResultSet rs2 = pst.executeQuery(query2);
             
             while(rs2.next()){
@@ -46,8 +43,28 @@ public class FindData extends DBConnection{
             
             while(rs3.next()){
                 df = rs3.getString("DocFee");
-            }*/
+            }
             JOptionPane.showMessageDialog(null, pid + did);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+    }*/
+    
+    void findPID(String aid){
+        try{
+            String a = aid, pid = null, did = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            String query = "SELECT patientID, DocID FROM appointments WHERE appID = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, a);
+            ResultSet rs1 = pst.executeQuery(query);
+            while (rs1.next()){
+                pid = rs1.getString("patientID");
+                did = rs1.getString("DocID");
+            }
+            JOptionPane.showMessageDialog(null, pid + " " +did);
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error: " + ex);
