@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2019 at 04:13 AM
+-- Generation Time: Apr 02, 2019 at 08:56 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -35,15 +35,16 @@ CREATE TABLE `appointments` (
   `billID` varchar(7) NOT NULL,
   `date` varchar(10) NOT NULL,
   `time` varchar(5) NOT NULL,
-  `queueNum` int(11) NOT NULL
+  `queueNum` int(11) NOT NULL,
+  `symptoms` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appID`, `patientID`, `DocID`, `billID`, `date`, `time`, `queueNum`) VALUES
-('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0);
+INSERT INTO `appointments` (`appID`, `patientID`, `DocID`, `billID`, `date`, `time`, `queueNum`, `symptoms`) VALUES
+('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0, '0');
 
 -- --------------------------------------------------------
 
