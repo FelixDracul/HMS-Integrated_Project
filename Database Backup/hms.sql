@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2019 at 08:56 PM
+-- Generation Time: Apr 03, 2019 at 06:50 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -44,7 +44,7 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`appID`, `patientID`, `DocID`, `billID`, `date`, `time`, `queueNum`, `symptoms`) VALUES
-('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0, '0');
+('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0, 'Cough');
 
 -- --------------------------------------------------------
 
@@ -102,6 +102,13 @@ CREATE TABLE `patients` (
   `pAddress` varchar(100) NOT NULL,
   `pGender` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `patients`
+--
+
+INSERT INTO `patients` (`patID`, `pFName`, `pLName`, `pDoB`, `pContactNum`, `pAddress`, `pGender`) VALUES
+('p0001', 'John', 'Doe', '1990-10-12', 771234567, '123, ABC', 'm');
 
 -- --------------------------------------------------------
 
