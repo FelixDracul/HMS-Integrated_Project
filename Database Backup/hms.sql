@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 06:50 AM
+-- Generation Time: Apr 03, 2019 at 05:22 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -85,6 +85,19 @@ CREATE TABLE `medicine_in` (
   `Quantity` int(11) NOT NULL,
   `Unit_price` double NOT NULL,
   `Brand` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pastmedi`
+--
+
+CREATE TABLE `pastmedi` (
+  `mID` int(11) NOT NULL,
+  `AppID` varchar(14) NOT NULL,
+  `medicineN` varchar(30) NOT NULL,
+  `Dosage_(mg)` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -185,6 +198,12 @@ ALTER TABLE `medicine_in`
   ADD PRIMARY KEY (`Code`);
 
 --
+-- Indexes for table `pastmedi`
+--
+ALTER TABLE `pastmedi`
+  ADD PRIMARY KEY (`mID`);
+
+--
 -- Indexes for table `patients`
 --
 ALTER TABLE `patients`
@@ -195,6 +214,16 @@ ALTER TABLE `patients`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `pastmedi`
+--
+ALTER TABLE `pastmedi`
+  MODIFY `mID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
