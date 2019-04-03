@@ -10,8 +10,8 @@ package PharmacistGUI;
  * @author Maleesha Nanayakkara
  */
 public class DBMconnection {
-     protected String driver = "com.mysql.jdbc.Driver";
-    protected String url = "jdbc:mysql://localhost:3306/tpsDB";
+    protected String driver = "com.mysql.jdbc.Driver";
+    protected String url = "jdbc:mysql://localhost:3306/hms";
     protected String userName ="root";
     protected String Password ="";
     

@@ -274,7 +274,7 @@ public class Addmedi extends javax.swing.JFrame {
     private void AddmediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddmediActionPerformed
 
         int mcode = Integer.parseInt( jTextField1.getText());
-        String mname =jTextField2 .getText();
+        String mname =jTextField2.getText();
         String mg = jTextField3.getText();
         int qty   =Integer.parseInt( jTextField4.getText());
         double Uprice =Double.parseDouble(jTextField5.getText());
