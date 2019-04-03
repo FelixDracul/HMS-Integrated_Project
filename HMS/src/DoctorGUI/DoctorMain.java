@@ -18,8 +18,11 @@ import javax.swing.JOptionPane;
  * @author Kulitha Abeywardena
  */
 public class DoctorMain extends javax.swing.JFrame {
-
-    private String pid, a;
+    
+        medirecords f1 = new medirecords();
+   
+        public String pid, a;
+        
     /**
      * Creates new form DoctorMain
      */
@@ -189,6 +192,11 @@ public class DoctorMain extends javax.swing.JFrame {
         pGL.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButton4.setText("Patient's Past Medical Records");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -405,6 +413,12 @@ public class DoctorMain extends javax.swing.JFrame {
             Dosage.setText("");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        f1.setVisible(true);
+        a = aSearchTB.getText();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
