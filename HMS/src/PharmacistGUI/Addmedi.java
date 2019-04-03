@@ -4,55 +4,25 @@
  * and open the template in the editor.
  */
 package PharmacistGUI;
+
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Maleesha Nanayakkara
  */
-public class AddMedicine extends javax.swing.JPanel {
-     
-    PharmacistMain P1 = new PharmacistMain();
-    AddMedicine P2 = new AddMedicine();
-    Connection con;
-    Statement stmt;
-    ResultSet rs;
-    Statement pst;
-   
-    public AddMedicine() {
-           initComponents();
-           Updatemedi.setEnabled(false);
-    }
-    public void UpdateAppTable(){
-    
-     DBMconnection ob1 = new DBMconnection();
-     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-      model.setRowCount(0);
-       try{
-            Class.forName(ob1.getDriver());
-            Connection con= DriverManager.getConnection(ob1.url,"root","");
-            Statement st = con.createStatement();
-          
-            String query = "SELECT * FROM medicine_in";
-            
-            ResultSet rs = st.executeQuery(query);
-     while(rs.next()){
-                  model.addRow(new Object[]{rs.getInt("Code"),rs.getString("Name"),rs.getString("Dosage"),rs.getInt("Quantity"),rs.getDouble("Unit_price"),rs.getString("Brand")});
-                  
-            }}
-        catch(Exception ee){
-            
-        }
-        
-    
+public class Addmedi extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Addmedi
+     */
+    public Addmedi() {
+        initComponents();
     }
 
     /**
@@ -85,9 +55,10 @@ public class AddMedicine extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -168,18 +139,6 @@ public class AddMedicine extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -207,13 +166,13 @@ public class AddMedicine extends javax.swing.JPanel {
                             .addComponent(jLabel8))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(jTextField1)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
                             .addComponent(jTextField4)
                             .addComponent(jTextField5)
-                            .addComponent(jTextField6))))
-                .addContainerGap(61, Short.MAX_VALUE))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Resetfields)
@@ -258,8 +217,6 @@ public class AddMedicine extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -281,28 +238,18 @@ public class AddMedicine extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -310,27 +257,29 @@ public class AddMedicine extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       P2.setVisible(false);
-       P1.setVisible(true);
+       this.dispose();
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void AddmediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddmediActionPerformed
-        
-              
+
         int mcode = Integer.parseInt( jTextField1.getText());
         String mname =jTextField2 .getText();
         String mg = jTextField3.getText();
         int qty   =Integer.parseInt( jTextField4.getText());
         double Uprice =Double.parseDouble(jTextField5.getText());
         String Brand = jTextField6.getText();
-        
+
         Datainsertmedi Sobj = new Datainsertmedi();
         JOptionPane.showMessageDialog(null, Sobj.mediinsert(mcode,mname,mg,qty,Uprice,Brand));
         {
@@ -340,21 +289,12 @@ public class AddMedicine extends javax.swing.JPanel {
             jTextField4.setText("");
             jTextField5.setText("");
             jTextField6.setText("");
-        }   
-        
+        }
+
     }//GEN-LAST:event_AddmediActionPerformed
 
-    private void ResetfieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetfieldsActionPerformed
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-    }//GEN-LAST:event_ResetfieldsActionPerformed
-
     private void UpdatemediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatemediActionPerformed
-       
+
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con1;
@@ -367,10 +307,10 @@ public class AddMedicine extends javax.swing.JPanel {
             pst1.setString(4, jTextField4.getText());
             pst1.setString(5, jTextField5.getText());
             pst1.setString(5, jTextField6.getText());
-        if(pst1.executeUpdate()==1){
+            if(pst1.executeUpdate()==1){
                 JOptionPane.showMessageDialog(null, "Record successfully edited!");
             }
-        else{
+            else{
                 JOptionPane.showMessageDialog(null, "Incorrect record!");
             }
         }
@@ -385,22 +325,21 @@ public class AddMedicine extends javax.swing.JPanel {
             jTextField5.setText("");
             jTextField6.setText("");
         }
-        
-        
+
     }//GEN-LAST:event_UpdatemediActionPerformed
 
     private void DeletemediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletemediActionPerformed
-         try{
+        try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
             String query = "Delete from medicine_in where Code = ?";
             PreparedStatement dst = con.prepareStatement(query);
             dst.setString(1, jTextField1.getText());
-          
-        if(dst.executeUpdate()==1){
+
+            if(dst.executeUpdate()==1){
                 JOptionPane.showMessageDialog(null, "Record successfully Deleted!");
             }
-        else{
+            else{
                 JOptionPane.showMessageDialog(null, "Incorrect record!");
             }
         }
@@ -415,9 +354,52 @@ public class AddMedicine extends javax.swing.JPanel {
             jTextField5.setText("");
             jTextField6.setText("");
         }
-        
+
     }//GEN-LAST:event_DeletemediActionPerformed
 
+    private void ResetfieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetfieldsActionPerformed
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+    }//GEN-LAST:event_ResetfieldsActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Addmedi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Addmedi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Addmedi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Addmedi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Addmedi().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Addmedi;
@@ -435,7 +417,6 @@ public class AddMedicine extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
