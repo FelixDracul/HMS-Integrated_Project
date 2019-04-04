@@ -179,6 +179,7 @@ public class PharmacistMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String a = Appsearchtxt.getText();
         DBMconnection ob1 = new DBMconnection();
         DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
         model1.setRowCount(0);
@@ -187,19 +188,24 @@ public class PharmacistMain extends javax.swing.JFrame {
             Connection con= DriverManager.getConnection(ob1.url,"root","");
             Statement st = con.createStatement();
             
-            String query = "SELECT AppID,medicineN,Dosage_(mg) FROM pastmedi WHERE AppID = '"+Appsearchtxt.getText()+"'";
+            String query = "SELECT * FROM pastmedi WHERE AppID = '"+a+"'";
             
             ResultSet rs = st.executeQuery(query);
            
             while(rs.next()){
-                  model1.addRow(new Object[]{rs.getString("AppID"),rs.getString("medicineN"),rs.getInt("Dosage_(mg)")});
-                  
+                  model1.addRow(new Object[]{rs.getString("AppID"),rs.getString("medicineN"),rs.getString("Dosage(mg)")});
+                  //System.out.println(rs.getString("AppID"));
+                  //System.out.println(rs.getString("medicineN"));
+                  //System.out.println(rs.getString("Dosage(mg)"));
             }
              
+            
            
         }
         catch(Exception es){
             System.out.println(es.getMessage());
+            System.out.println();
+            
         }
         
         

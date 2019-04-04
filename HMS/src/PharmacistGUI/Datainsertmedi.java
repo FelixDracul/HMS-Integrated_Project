@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Maleesha Nanayakkara
  */
 public class Datainsertmedi extends DBMconnection {String mediinsert (int MCode, String MName, String Mg, int MQty, double Mprice, String MBrand){
-        String query ="INSERT INTO medicine_in (Code, Name, Dosage, Quantity, Unit_price, Brand) VALUES ('"+MCode+"', '"+MName+"', '"+Mg+"', '"+MQty+"', '"+Mprice+"','"+MBrand+"')";
+        String query ="INSERT INTO medicine_in (Code, Name, Dosage, Quantity, Unit_price, Brand) VALUES ("+MCode+", '"+MName+"', '"+Mg+"', "+MQty+", "+Mprice+",'"+MBrand+"')";
         String message="";
         try{
             Class.forName(driver);

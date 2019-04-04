@@ -26,9 +26,31 @@ public class DoctorMain extends javax.swing.JFrame {
     /**
      * Creates new form DoctorMain
      */
+       
     public DoctorMain() {
-        dropdownmedi();
+        
         initComponents();
+        try{
+                
+            DBConnection db = new DBConnection();
+            Class.forName(db.getDriver());
+            Connection con = DriverManager.getConnection(db.getUrl(), "root", "");
+            Statement st = con.createStatement();
+            String query = "SELECT * FROM medicine_in ";
+            ResultSet rs2 = st.executeQuery(query);
+            while (rs2.next()){
+                String mname = rs2.getString("Name");
+                Medisc.addItem(mname);
+                System.out.println(mname);
+                
+                
+            }
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+        }
+        
     }
 
     void findA(){
@@ -71,24 +93,7 @@ public class DoctorMain extends javax.swing.JFrame {
         }
     }
     
-    private void dropdownmedi(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
-            String sql = "select Name from medicine_in";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()) {
-                String mname = rs.getString("Name");
-                Medisc.addItem(mname);
-            }
-        }
-        catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error: " + ex);
-        }
-        
-        }
+     
         
     
     /**
@@ -399,11 +404,11 @@ public class DoctorMain extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        String mn = Medisc.getSelectedItem().toString();
-        mn = Medisc.getSelectedItem().toString();
+        
+     
         
         try{
-          
+            String mn = Medisc.getSelectedItem().toString();
             String appoid = aSearchTB.getText();
             String Dos = Dosage.getText();
             InsertData mobj = new InsertData();

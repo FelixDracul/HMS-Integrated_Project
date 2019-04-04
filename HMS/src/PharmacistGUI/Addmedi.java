@@ -314,20 +314,19 @@ public class Addmedi extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con1;
             con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
-            String query = "update medicine_in set Code = ?, Name = ?, Dosage = ?, Quantity = ?, Brand = ? where Code = ?";
-            PreparedStatement pst1 = con1.prepareStatement(query);
-            pst1.setString(1, jTextField1.getText());
-            pst1.setString(2, jTextField2.getText());
-            pst1.setString(3, jTextField3.getText());
-            pst1.setString(4, jTextField4.getText());
-            pst1.setString(5, jTextField5.getText());
-            pst1.setString(5, jTextField6.getText());
-            if(pst1.executeUpdate()==1){
+            String query = "Select * From medicine_in where Code = '"+jTextField1.getText()+"'";
+            Statement st = con1.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+             jTextField2.setText(rs.getString("Name"));
+            jTextField3.setText(rs.getString("Dosage"));
+            jTextField4.setText(rs.getString("Quantity"));
+            jTextField5.setText(rs.getString("Unit_price"));
+            jTextField6.setText(rs.getString("Brand"));
+            }
+            
                 JOptionPane.showMessageDialog(null, "Record successfully edited!");
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Incorrect record!");
-            }
+           
         }
         catch(HeadlessException | ClassNotFoundException | SQLException ex){
             JOptionPane.showMessageDialog(null, "Error " + ex);
@@ -347,7 +346,7 @@ public class Addmedi extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
-            String query = "Delete from medicine_in where Code = ?";
+            String query = "Delete from medicine_in where Code = '"+jTextField1.getText()+"'";
             PreparedStatement dst = con.prepareStatement(query);
             dst.setString(1, jTextField1.getText());
 
