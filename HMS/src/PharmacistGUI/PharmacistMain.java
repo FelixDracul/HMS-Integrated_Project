@@ -65,7 +65,7 @@ public class PharmacistMain extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Pharmacy");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Maleesha Nanayakkara\\Downloads\\2003-512.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PharmacistGUI/2003-512.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -122,21 +122,21 @@ public class medirecords extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-         DoctorMain P2 = new DoctorMain();
-        medirecords f1 = new medirecords();
+         
+        //medirecords f1 = new medirecords();
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new medirecords().setVisible(true);
-            }
+            }*/
+    }
      public void UpdateAppTable(){
     
      DBConnection ob1 = new DBConnection();
      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
       model.setRowCount(0);
        try{
-           
-            
+            DoctorMain P2 = new DoctorMain();
             Class.forName(ob1.getDriver());
             Connection con= DriverManager.getConnection(ob1.url,"root","");
             Statement st = con.createStatement();
@@ -152,7 +152,7 @@ public class medirecords extends javax.swing.JFrame {
         catch(Exception ee){
             
         }
-        };
+     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

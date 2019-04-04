@@ -49,15 +49,15 @@ public class InsertData extends DBConnection{
         return message;
     }
     
-    String insertBill(String pid, String pfn, String pln, String pdob, int pcnum, String paddr, String gen){
-        String query = "INSERT INTO patients (patID,pFName,pLName,pDoB,pContactNum,pAddress,pGender) VALUES ('"+pid+"', '"+pfn+"', '"+pln+"', '"+pdob+"', "+pcnum+", '"+paddr+"', '"+gen+"')";
+    String insertBill(String bid, String aid, String pid, double totfee){
+        String query = "INSERT INTO bills (billID,appID,patID,totalFee) VALUES ('"+bid+"', '"+aid+"', '"+pid+"', "+totfee+")";
         String message="";
         try{
             Class.forName(driver);
             Connection con = DriverManager.getConnection(url, userName, Password);
             Statement st = con.createStatement();
             st.executeUpdate(query);
-            message = "Patient has been successfully registered!";
+            message = "Bill has been successfully added! Bill number is: " + bid;
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error: " + ex);
