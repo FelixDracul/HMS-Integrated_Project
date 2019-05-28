@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2019 at 06:01 AM
+-- Generation Time: May 28, 2019 at 05:10 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -44,7 +44,7 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`appID`, `patientID`, `DocID`, `billID`, `date`, `time`, `queueNum`, `symptoms`) VALUES
-('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0, 'Cough'),
+('a0001', 'p0001', 'd0001', 'b000001', '2018-12-4', '13.45', 0, 'stomache'),
 ('a0002', 'p0002', 'd0005', 'b000002', '2018-8-5', '6.55', 2, NULL),
 ('a0003', 'p0003', 'd0002', 'b000003', '2019-4-1', '13.13', 4, NULL),
 ('a0004', 'p0003', 'd0004', 'b000004', '2019-2-14', '4.30', 5, NULL),
@@ -124,7 +124,8 @@ CREATE TABLE `medicine_in` (
 
 INSERT INTO `medicine_in` (`Code`, `Name`, `Dosage`, `Quantity`, `Unit_price`, `Brand`) VALUES
 (1, 'Cetrizine', '100', 1000, 15, 'HMG'),
-(2, 'Piriton', '200', 2000, 10, 'MGK');
+(2, 'Piriton', '200', 2000, 10, 'MGK'),
+(3, 'omeprazol', '120', 499, 80, 'omez');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,7 @@ CREATE TABLE `pastmedi` (
   `mID` int(11) NOT NULL,
   `AppID` varchar(14) NOT NULL,
   `medicineN` varchar(30) NOT NULL,
-  `Dosage_(mg)` varchar(12) DEFAULT NULL
+  `Dosage` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

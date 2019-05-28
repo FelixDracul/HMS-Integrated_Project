@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Maleesha Nanayakkara
  */
 public class InsertData extends DBConnection {String prescripinsert(String AppID,String MENAME,String Dosagemg){
-     String query ="INSERT INTO pastmedi (AppID,medicineN,Dosage_(mg)) VALUES ('"+AppID+"', '"+MENAME+"','"+Dosagemg+"')";
+     String query ="INSERT INTO pastmedi (AppID,medicineN,Dosage) VALUES ('"+AppID+"', '"+MENAME+"','"+Dosagemg+"')";
      String message="";
      try{
             Class.forName(driver);
