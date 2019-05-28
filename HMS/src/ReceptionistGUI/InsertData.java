@@ -50,7 +50,7 @@ public class InsertData extends DBConnection{
     }
     
     String insertBill(String bid, String aid, String pid, double totfee){
-        String query = "INSERT INTO bills (billID,appID,patID,totalFee) VALUES ('"+bid+"', '"+aid+"', '"+pid+"', "+totfee+")";
+        String query = "INSERT INTO bills (billID, appID, patID, totalFee) VALUES ('"+bid+"', '"+aid+"', '"+pid+"', "+totfee+")";
         String message="";
         try{
             Class.forName(driver);

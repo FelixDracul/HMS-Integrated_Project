@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
  *
  * @author Maleesha Nanayakkara
  */
-public class InsertData extends DBConnection {String prescripinsert(String AppID,String MENAME,String Dosagemg){
+public class InsertData extends DBConnection {
+    String prescripinsert(String AppID,String MENAME,String Dosagemg){
      String query ="INSERT INTO pastmedi (AppID,medicineN,Dosage) VALUES ('"+AppID+"', '"+MENAME+"','"+Dosagemg+"')";
      String message="";
      try{
@@ -22,7 +23,7 @@ public class InsertData extends DBConnection {String prescripinsert(String AppID
             Connection con = DriverManager.getConnection(url, userName, Password);
             Statement st = con.createStatement();
             st.executeUpdate(query);
-            message ="Medicine has been entered !";
+            message ="Medicine has been entered!";
             
         
         }

@@ -55,7 +55,7 @@ public class FindData extends DBConnection{
         try{
             String a = aid, pid = null, did = null;
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms?serverTimezone=UTC", "root", "");
             String query = "SELECT patientID, DocID FROM appointments WHERE appID = ?";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, a);

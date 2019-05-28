@@ -55,6 +55,8 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password:");
 
+        unameTB.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         docRBtn.setBackground(new java.awt.Color(0, 102, 102));
         docRBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         docRBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,6 +99,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("ADAM.CG PRO", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("User Login");
+
+        passTB.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginGUI/Webp.net-resizeimage.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -179,7 +183,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Select Employee Type!");
             }
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms?serverTimezone=UTC", "root", "");
             String sql = "select * from users where username=? and password=? and type=?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, unameTB.getText());

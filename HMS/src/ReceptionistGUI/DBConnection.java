@@ -10,7 +10,7 @@ package ReceptionistGUI;
  */
 public class DBConnection {
     protected String driver = "com.mysql.jdbc.Driver";
-    protected String url = "jdbc:mysql://localhost:3306/hms";
+    protected String url = "jdbc:mysql://localhost:3306/hms?serverTimezone=UTC";
     protected String userName ="root";
     protected String Password ="";
     

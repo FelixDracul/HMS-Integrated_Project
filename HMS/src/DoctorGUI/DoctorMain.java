@@ -386,7 +386,7 @@ public class DoctorMain extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms?serverTimezone=UTC", "root", "");
             String query = "update appointments set symptoms = ? where appID = '"+a+"'";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, simpsTB.getText());
@@ -412,7 +412,7 @@ public class DoctorMain extends javax.swing.JFrame {
             String appoid = aSearchTB.getText();
             String Dos = Dosage.getText();
             InsertData mobj = new InsertData();
-            
+            JOptionPane.showMessageDialog(null, mobj.prescripinsert(appoid, mn, Dos));
             }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error: " +ex);
@@ -423,7 +423,6 @@ public class DoctorMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
         f1.setVisible(true);
         a = aSearchTB.getText();
     }//GEN-LAST:event_jButton4ActionPerformed

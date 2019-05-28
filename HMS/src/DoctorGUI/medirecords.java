@@ -22,6 +22,7 @@ public class medirecords extends javax.swing.JFrame {
      */
     public medirecords() {
         initComponents();
+        UpdateAppTable();
     }
 
     /**

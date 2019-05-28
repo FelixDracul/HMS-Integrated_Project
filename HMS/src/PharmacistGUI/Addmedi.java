@@ -313,7 +313,7 @@ public class Addmedi extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con1;
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms?serverTimezone=UTC", "root", "");
             String query = "Select * From medicine_in where Code = '"+jTextField1.getText()+"'";
             Statement st = con1.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -345,7 +345,7 @@ public class Addmedi extends javax.swing.JFrame {
     private void DeletemediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletemediActionPerformed
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hms?serverTimezone=UTC", "root", "");
             String query = "Delete from medicine_in where Code = '"+jTextField1.getText()+"'";
             PreparedStatement dst = con.prepareStatement(query);
             dst.setString(1, jTextField1.getText());
