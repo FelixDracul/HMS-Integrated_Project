@@ -45,21 +45,18 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password:");
 
         unameTB.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        docRBtn.setBackground(new java.awt.Color(0, 102, 102));
+        docRBtn.setBackground(new java.awt.Color(255, 204, 153));
         docRBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        docRBtn.setForeground(new java.awt.Color(255, 255, 255));
         docRBtn.setText("Doctor");
         docRBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,9 +64,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        recRBtn.setBackground(new java.awt.Color(0, 102, 102));
+        recRBtn.setBackground(new java.awt.Color(255, 204, 153));
         recRBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        recRBtn.setForeground(new java.awt.Color(255, 255, 255));
         recRBtn.setText("Receptionist");
         recRBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,9 +73,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        PharmRBtn.setBackground(new java.awt.Color(0, 102, 102));
+        PharmRBtn.setBackground(new java.awt.Color(255, 204, 153));
         PharmRBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        PharmRBtn.setForeground(new java.awt.Color(255, 255, 255));
         PharmRBtn.setText("Pharmacist");
         PharmRBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +83,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         logBtn.setBackground(new java.awt.Color(204, 255, 204));
-        logBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        logBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         logBtn.setText("Log In");
         logBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,12 +92,12 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("ADAM.CG PRO", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("User Login");
 
         passTB.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginGUI/Webp.net-resizeimage.jpg"))); // NOI18N
+        jLabel4.setBackground(new java.awt.Color(0, 102, 102));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginGUI/User.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -160,7 +155,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(PharmRBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(logBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
