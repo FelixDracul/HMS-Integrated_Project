@@ -1,2 +1,2 @@
-# HMS-Integrated_Project
+# HospitalManagementSystem-Java
 Hospital Management System
